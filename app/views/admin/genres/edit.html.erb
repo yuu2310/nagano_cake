@@ -1,0 +1,13 @@
+<h1>ジャンル編集</h1>
+
+ <%= form_with model: @genre do |f| %>
+    <div class="form-group">
+      <%= f.label :name %>
+      <%= f.text_field :name, class: "form-control name" %>
+    </div>
+    
+    <div class="form-group">
+      <%= f.submit '変更を保存', class: "btn btn-secondary" %>
+    </div>
+ 
+ <% end %>
