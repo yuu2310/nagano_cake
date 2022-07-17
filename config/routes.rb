@@ -10,22 +10,31 @@ Rails.application.routes.draw do
   sessions: "admin/sessions"
 }
 
-resources :items, only:[:index, :show]
 
-namespace :public do
-  resources :customers, only:[:show, :edit, :update, :unsubscribe, :withdraw]
+
+scope module: :public do
+  root to: 'homes#top'
+  get '/about' => 'homes#about'
+  resources :items, only:[:index, :show]
+  get '/customers/my_page' => 'customers#show'
+  get '/cuntomers/unsubscribe' => 'customers#unsubscribe'
+  patch '/customers/withdraw' => 'customers#withdraw'
+  resources :customers, only:[:edit, :update]
+  resources :addresses, only:[:index, :edit, :create, :update, :destroy]
+  post '/orders/confirm' => 'orders#confirm'
+  get '/orders/complete' => 'orders#complete'
+  resources :orders, only:[:new, :create, :index, :show]
+  
+  
 end
 
 
  namespace :admin do
-   resources :genres, only:[:index, :create, :edit, :update] 
-   resources :items, only:[:new, :create, :index, :show, :edit, :update]
-   resources :customers, only:[:index, :edit, :update, :show]
+  root to: 'homes#top'
+  resources :genres, only:[:index, :create, :edit, :update] 
+  resources :items, only:[:new, :create, :index, :show, :edit, :update]
+  resources :customers, only:[:index, :edit, :update, :show]
   end
-  
- root to: 'homes#top'
-
- get '/home/about' => 'homes#about'
 
  
  

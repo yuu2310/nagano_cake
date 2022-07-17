@@ -1,3 +1,4 @@
+<%= render 'admin/nav' %>
 <h1>会員一覧</h1>
 
   <table class="table">
@@ -19,13 +20,18 @@
             <%= customer.id %>
           </td>  
           <td>
-            <%= customer.name %>
+            <%= link_to customer.first_name + customer.last_name, admin_customer_path(customer.id) %>
           </td> 
+          
           <td>
             <%= customer.email %>
           </td>
           <td>
-            <%= customer.is_active %>
+            <% if customer.is_deleted %>
+            <%= '退会' %>
+            <% else %>
+            <%= '有効' %>
+            <% end %>
           </td>
         </tr>
         <% end %>

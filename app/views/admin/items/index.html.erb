@@ -1,10 +1,11 @@
-
+<%= render 'admin/nav'%>
 <main>
   <p id="notice"></p>
   <div class="container px-5 px-sm-0 offset-md-1">
     <div class="row">
       <div class="col-md-12">
         <h1>商品一覧</h1>
+        <%= link_to '商品新規登録画面へ', new_admin_item_path %>
           <table class="table">
              <thead>
                 <tr>
@@ -24,7 +25,7 @@
                   <%= item.id %>
                 </td>  
                 <td>
-                  <%= item.name %>
+                  <%= link_to item.name,  admin_item_path(item.id) %>
                 </td> 
                 <td>
                   <%= item.price.to_s(:delimited) %>
@@ -43,7 +44,7 @@
               <% end %>
             </tbody>
           </table>
-          <%= paginate @items %>
+          <%#= paginate @items %>
       </div>
     </div>
   </div>              

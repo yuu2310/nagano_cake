@@ -1,0 +1,36 @@
+<%= render 'admin/nav' %>
+<h2><%= @customer.first_name %><%= @customer.last_name %>さんの会員詳細</h2>
+
+<h5>会員ID</h5>
+<%= @customer.id %>
+
+<h5>氏名</h5>
+<%= @customer.first_name %>
+<%= @customer.last_name %>
+
+<h5>フリガナ</h5>
+<%= @customer.first_name_kana %>
+<%= @customer.last_name_kana %>
+
+<h5>郵便番号</h5>
+<%= @customer.postal_code %>
+
+<h5>住所</h5>
+<%= @customer.address %>
+
+<h5>電話番号</h5>
+<%= @customer. telephone_number %>
+
+<h5>メールアドレス</h5>
+<%= @customer.email %>
+
+<h5>会員ステータス</h5>
+<% if @customer.is_deleted %>
+  <%= '退会' %>
+  <% else %>
+  <%= '有効' %>
+<% end %>
+
+<%= link_to '編集する', edit_admin_customer_path(@customer.id) %>
+
+<%= link_to '注文履歴一覧を見る', admin_root_path %>

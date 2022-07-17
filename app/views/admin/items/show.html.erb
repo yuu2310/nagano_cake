@@ -1,8 +1,11 @@
+<%= render 'admin/nav' %>
 <h1>商品詳細</h1>
   <div>
-   
-   <%= image_tag @item.image, size: '300x200' %>
-   
+   <% if @item.image.attached? %>
+    <%= image_tag @item.image, size: '230x150' %>
+   <% else %>
+    <%= image_tag "no_image.jpeg" %>
+   <% end %>
    <p>商品名 <%= @item.name %></p>
    
    <p>商品説明 <%= @item.introduction %></p>
@@ -21,7 +24,7 @@
        <% else %>
          販売停止中
        <% end %>
-      </span>
+      
    
    
    <%=link_to "編集する", edit_admin_item_path(@item.id) %>

@@ -1,0 +1,84 @@
+<header>
+      <div class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+          <%= link_to "Logo" %>
+          <!--class: "navbar-brand" -->
+            <% if customer_signed_in? %>
+            
+            <div class="navbar navbar-expand-lg navbar-dark bg-dark">
+              <div class="container">
+                <div class="navbar-collapse collapse" id="navbarNavDropdown" style>
+                   <ul class="navbar-nav ml-auto">
+                     
+                      <li>
+                        <%= link_to customers_my_page_path, class: "nav-link text-light" do %>
+                          <i class="fas fa-home"></i> マイページ
+                        <% end %>
+                      </li>
+                      
+                      <li>
+                        <%= link_to  "nav-link text-light" do %>
+                          <i class="fas fa-link"></i> 商品一覧
+                        <% end %>
+                      </li>
+                      
+                      <li>
+                        <%= link_to class: "nav-link text-light" do %>
+                          <i class="fas fa-user-plus"></i> カート
+                        <% end %>
+                      </li>
+                      
+                      <li>
+                        <%= link_to destroy_customer_session_path, method: :delete, class: "nav-link text-light" do %>
+                          <i class="fas fa-sign-in-alt"></i> ログアウト
+                        <% end %>
+                      </li>
+                    </ul>
+                </div>
+              </div>
+            </div>  
+             <% else %>
+             <div class="navbar navbar-expand-lg navbar-dark bg-dark">
+               <div class="container">
+                 <div class="navbar-collapse collapse" id="navbarNavDropdown" style>
+                   <ul class="navbar-nav ml-auto">
+                     
+                      <li>
+                        <%= link_to about_path, class: "nav-link text-light" do %>
+                          <i class="fas fa-home"></i> About
+                        <% end %>
+                      </li>
+                      
+                      <li>
+                        <%= link_to items_path, class: "nav-link text-light" do %>
+                          <i class="fas fa-link"></i> 商品一覧
+                        <% end %>
+                      </li>
+                      
+                      <li>
+                        <%= link_to new_customer_registration_path, class: "nav-link text-light" do %>
+                          <i class="fas fa-user-plus"></i> 新規登録
+                        <% end %>
+                      </li>
+                      
+                      <li>
+                        <%= link_to new_customer_session_path, class: "nav-link text-light" do %>
+                          <i class="fas fa-sign-in-alt"></i> ログイン
+                        <% end %>
+                      </li>
+                      
+                      <li>
+                        <%= link_to new_admin_session_path, class: "nav-link text-light" do %>
+                          <i class="fas fa-sign-in-alt"></i> 管理者側ログインへ
+                        <% end %>
+                      </li>
+                      
+                    </ul>
+                  </div>
+                </div>
+              </div>  
+              <% end %>
+        <div>
+          <%= flash[:notice] %>　
+        </div>
+    </header>
