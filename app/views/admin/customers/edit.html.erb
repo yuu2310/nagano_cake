@@ -1,6 +1,17 @@
 <%= render 'admin/nav' %>
 <h2><%= @customer.first_name %><%= @customer.last_name %>さんの会員情報編集</h2>
 
+
+<% if @customer.errors.any? %>
+  <%= @customer.errors.count %>件のエラーが発生しました
+  <ul>
+    <% @customer.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+    <% end %>
+  </ul>
+<% end %>
+
+
 <%= form_with model: @customer, url: admin_customer_path(@customer.id), method: :patch do |customer| %>
 
 <h5>氏名</h5>

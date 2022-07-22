@@ -1,84 +1,60 @@
-<header>
-      <div class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <div class="container">
-          <%= link_to "Logo" %>
-          <!--class: "navbar-brand" -->
-            <% if customer_signed_in? %>
+<header class="shadow-sm">
+  <nav class="navbar navbar-expand-lg navbar-light">
+    <div class="container">
+      <form class="form-inline">
+        
+        <button class="btn btn-outline-secondary" type="button"><a class="navbar-brand p-3" href="/"><%= link_to "Logo", root_path, class: 'nav-link text-dark'  %></a></button>
+        <% if customer_signed_in? %>
+         <ul class="navbar-nav ml-auto">
+           
+           
+           
+             <li class="nav-item">
+              <button class="btn btn-outline-secondary" type="button"><%= link_to 'マイページ', customers_my_page_path, class: 'nav-link text-dark'  %></button>
+            </li>
             
-            <div class="navbar navbar-expand-lg navbar-dark bg-dark">
-              <div class="container">
-                <div class="navbar-collapse collapse" id="navbarNavDropdown" style>
-                   <ul class="navbar-nav ml-auto">
-                     
-                      <li>
-                        <%= link_to customers_my_page_path, class: "nav-link text-light" do %>
-                          <i class="fas fa-home"></i> マイページ
-                        <% end %>
-                      </li>
-                      
-                      <li>
-                        <%= link_to  "nav-link text-light" do %>
-                          <i class="fas fa-link"></i> 商品一覧
-                        <% end %>
-                      </li>
-                      
-                      <li>
-                        <%= link_to class: "nav-link text-light" do %>
-                          <i class="fas fa-user-plus"></i> カート
-                        <% end %>
-                      </li>
-                      
-                      <li>
-                        <%= link_to destroy_customer_session_path, method: :delete, class: "nav-link text-light" do %>
-                          <i class="fas fa-sign-in-alt"></i> ログアウト
-                        <% end %>
-                      </li>
-                    </ul>
-                </div>
-              </div>
-            </div>  
-             <% else %>
-             <div class="navbar navbar-expand-lg navbar-dark bg-dark">
-               <div class="container">
-                 <div class="navbar-collapse collapse" id="navbarNavDropdown" style>
-                   <ul class="navbar-nav ml-auto">
-                     
-                      <li>
-                        <%= link_to about_path, class: "nav-link text-light" do %>
-                          <i class="fas fa-home"></i> About
-                        <% end %>
-                      </li>
-                      
-                      <li>
-                        <%= link_to items_path, class: "nav-link text-light" do %>
-                          <i class="fas fa-link"></i> 商品一覧
-                        <% end %>
-                      </li>
-                      
-                      <li>
-                        <%= link_to new_customer_registration_path, class: "nav-link text-light" do %>
-                          <i class="fas fa-user-plus"></i> 新規登録
-                        <% end %>
-                      </li>
-                      
-                      <li>
-                        <%= link_to new_customer_session_path, class: "nav-link text-light" do %>
-                          <i class="fas fa-sign-in-alt"></i> ログイン
-                        <% end %>
-                      </li>
-                      
-                      <li>
-                        <%= link_to new_admin_session_path, class: "nav-link text-light" do %>
-                          <i class="fas fa-sign-in-alt"></i> 管理者側ログインへ
-                        <% end %>
-                      </li>
-                      
-                    </ul>
-                  </div>
-                </div>
-              </div>  
-              <% end %>
-        <div>
-          <%= flash[:notice] %>　
-        </div>
-    </header>
+            <li class="nav-item">
+              <button class="btn btn-outline-secondary" type="button"><%= link_to  '商品一覧', items_path, class: 'nav-link text-dark'   %></button>
+            </li>
+            
+            <li class="nav-item">
+              <button class="btn btn-outline-secondary" type="button"><%= link_to 'カート', cart_items_path, class: 'nav-link text-dark'  %></button>
+            </li>
+            
+            <li class="nav-item">
+              <button class="btn btn-outline-secondary" type="button"><%= link_to 'ログアウト', destroy_customer_session_path, method: :delete, class: 'nav-link text-dark'  %></button>
+            </li>
+            
+          </ul>
+      
+           <% else %>
+          <ul class="navbar-nav ml-auto">
+             
+              <li>
+                <button class="btn btn-outline-secondary" type="button"><%= link_to 'About', about_path, class: 'nav-link text-dark'  %></button>
+              </li>
+              
+              <li>
+                <button class="btn btn-outline-secondary" type="button"><%= link_to  '商品一覧', items_path, class: 'nav-link text-dark'  %></button>
+              </li>
+              
+              <li>
+                <button class="btn btn-outline-secondary" type="button"><%= link_to  '新規登録', new_customer_registration_path, class: 'nav-link text-dark'  %></button>
+              </li>
+              
+              <li>
+                <button class="btn btn-outline-secondary" type="button"><%= link_to 'ログイン', new_customer_session_path, class: 'nav-link text-dark'  %></button>
+              </li>
+              
+              <li>
+                <button class="btn btn-outline-secondary" type="button"><%= link_to  '管理者側ログインへ', new_admin_session_path, class: 'nav-link text-dark'  %></button>
+              </li>
+              
+          </ul>
+          
+            <% end %>
+      </form>
+    <div>
+      <p><%= flash[:notice] %></p>
+  </nav>
+</header>

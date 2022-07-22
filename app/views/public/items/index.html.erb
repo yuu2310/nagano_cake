@@ -1,2 +1,23 @@
-<%#= render 'public/nav' %>
+<%= render 'public/nav' %>
+
 <h1>商品一覧</h1>
+
+ <% @items.each do |item| %>
+ 
+  <% if item.image.attached? %>
+  
+   <p><%= link_to (image_tag item.image, size: '230x150'), item_path(item.id) %></p>
+   
+  <% else %>
+  
+   <p><%= image_tag "no_image.jpeg" %></p>
+   
+  <% end %>
+  
+  <p><%= item.name %></p>
+  
+  <p><%= number_to_currency(item.price, unit: "¥", format: "%u %n" ) %></p>
+  
+ <% end %>
+
+<%= paginate @items %>

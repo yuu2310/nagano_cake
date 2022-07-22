@@ -1,1 +1,22 @@
-<h1>商品詳細ページ</h1>
+<%= render 'public/nav' %>
+<p><%= image_tag @item.image, size: "250x150" %></p>
+
+<p><%= @item.name %></p>
+
+<p><%= @item.introduction %></p>
+
+<%= number_to_currency(@item.price, unit: "¥", format: "%u %n" ) %>
+<font size="2">(税込)</font>
+
+<%= form_with model: @cart_item do |item| %>
+
+<%= item.select :amount, *[1..10], { include_blank: '個数選択' } %>
+
+<%= item.hidden_field :item_id, :value => @item.id %>
+
+<%= item.hidden_field :customer_id, :value => current_customer.id %>
+
+<%= item.submit 'カートに入れる' %>
+
+<% end %>
+

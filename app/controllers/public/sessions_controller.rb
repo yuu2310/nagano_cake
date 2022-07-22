@@ -17,6 +17,15 @@ class Public::SessionsController < Devise::SessionsController
   # def destroy
   #   super
   # end
+  
+  def after_sign_in_path_for(resource)
+    items_path
+  end
+  
+  def after_sign_out_path_for(resource)
+    root_path
+  end
+  
 
    protected
 
