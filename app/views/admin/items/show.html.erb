@@ -13,8 +13,8 @@
    <p>ジャンル <%= @item.genre.name %></p>
    
    <p>税込価格(税抜価格)</p>
-   <%= @item.with_tax_price.to_s(:delimited) %>
-   <span>(<%= (@item.price).to_s(:delimited) %>)</span>　円
+   ¥ <%= @item.with_tax_price.to_s(:delimited) %>
+   <span>(¥ <%= (@item.price).to_s(:delimited) %>)</span>　円
    
    
    <p>販売ステータス</p>
