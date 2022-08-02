@@ -1,2 +1,31 @@
 <%= render 'public/nav' %>
-<h1>TOP</h1>
+
+<p class="font-text">
+	ようこそ、NaganoCakeへ！<br>
+  このサイトは、ケーキ販売のECサイトになります。<br>
+  会員でない方も商品の閲覧はできますが、<br>
+  購入には会員登録が必要になります。
+</p>
+
+<h5>新着商品</h5>
+
+<% @items.each do |item| %>
+
+<% if item.image.attached? %>
+
+  <%= link_to (image_tag item.image, size: '230x150'), item_path(item.id) %></br>
+
+<% else %>
+  
+  <%= image_tag "no_image.jpeg" %>
+   
+<% end %>
+
+<%= item.name %></br>
+  
+¥ <%= item.with_tax_price.to_s(:delimited) %></br>
+  
+ <% end %>
+ 
+ <%= link_to "すべての商品を見る>", items_path %>
+

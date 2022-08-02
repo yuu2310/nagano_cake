@@ -1,6 +1,17 @@
 <%= render 'public/nav' %>
 <h2>配送先登録/一覧</h2>
-<%= form_with model: @address, url: addresses_path, method: :post do |address| %>
+
+<% if @address.errors.any? %>
+  <%= @address.errors.count %>件のエラーが発生しました
+  <ul>
+    <% @address.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+    <% end %>
+  </ul>
+<% end %>
+
+
+<%= form_with model: @address, url: addresses_path, method: :post, local: true do |address| %>
 
 <h5>郵便番号(ハイフンなし)</h5>
 <%= address.text_field :postal_code, placeholder: "0000000", maxlength: "7" %>

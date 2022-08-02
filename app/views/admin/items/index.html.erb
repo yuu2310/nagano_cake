@@ -4,11 +4,11 @@
   <div class="container px-5 px-sm-0 offset-md-1">
     <div class="row">
       <div class="col-md-12">
-        <h1>商品一覧</h1>
-        <%= link_to '商品新規登録画面へ', new_admin_item_path %>
+        <p><span class="p-3 mb-2 bg-light text-dark font-weight-bold">商品一覧</span></p>
+        <p><%= link_to '商品新規登録画面へ', new_admin_item_path, class: "text-end" %></p>
           <table class="table">
              <thead>
-                <tr>
+                <tr class="p-3 mb-2 bg-light text-dark">
                   <th>商品ID</th>
                   <th>商品名</th>
                   <th>税抜価格</th>
@@ -25,7 +25,7 @@
                   <%= item.id %>
                 </td>  
                 <td>
-                  <%= link_to item.name,  admin_item_path(item.id) %>
+                  <u><%= link_to item.name,  admin_item_path(item.id), class: "text-dark" %></u>
                 </td> 
                 <td>
                   ¥ <%= item.price.to_s(:delimited) %>
@@ -35,9 +35,9 @@
                 </td>
                 <td>
                   <% if item.is_active %>
-                    販売中
+                    <p class="text-success">販売中</p>
                   <% else %>
-                    販売停止中
+                    <p class="text-secondary">販売停止中</p>
                   <% end %>
                 </td>
               </tr>

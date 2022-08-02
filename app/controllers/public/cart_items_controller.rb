@@ -6,17 +6,22 @@ class Public::CartItemsController < ApplicationController
   end
   
   def update
+    cart_item = CartItem.find(params[:id])
+    cart_item.update(cart_item_params)
+    redirect_to cart_items_path
   end
   
   def destroy
     cart_item = CartItem.find(params[:id])
     cart_item.destroy
+    flash[:notice] = "#{cart_item.item.name}を削除しました"
     redirect_to cart_items_path
   end
   
   def destroy_all
     cart_items = CartItem.all
     cart_items.destroy_all
+    flash[:notice] = "カートの商品を全て削除しました"
     redirect_to cart_items_path
   end
   

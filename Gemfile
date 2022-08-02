@@ -65,3 +65,5 @@ gem 'kaminari','~> 1.2.1'
 gem 'rails-i18n'
 
 gem 'image_processing', '~> 1.2'
+
+gem 'font-awesome-rails'

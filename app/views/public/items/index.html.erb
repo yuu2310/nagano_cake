@@ -16,7 +16,7 @@
   
   <p><%= item.name %></p>
   
-  <p><%= number_to_currency(item.price, unit: "¥", format: "%u %n" ) %></p>
+  <p><%= number_to_currency(item.with_tax_price, unit: "¥", format: "%u %n" ) %></p>
   
  <% end %>
 

@@ -15,7 +15,9 @@ Rails.application.routes.draw do
 scope module: :public do
   root to: 'homes#top'
   get '/about' => 'homes#about'
+  get '/items/search' => 'items#search'
   resources :items, only:[:index, :show]
+  resources :genres, only: [:show]
   get '/customers/my_page' => 'customers#show'
   get '/cuntomers/unsubscribe' => 'customers#unsubscribe'
   patch '/customers/withdraw' => 'customers#withdraw'
@@ -35,8 +37,10 @@ end
  namespace :admin do
   root to: 'homes#top'
   resources :genres, only:[:index, :create, :edit, :update] 
-  resources :items, only:[:new, :create, :index, :show, :edit, :update]
+  resources :items, only:[:new, :create, :index, :show, :edit, :update, :destroy]
   resources :customers, only:[:index, :edit, :update, :show]
+  resources :orders, only:[:index, :show, :update]
+  resources :order_details, only:[:update]
   end
 
  

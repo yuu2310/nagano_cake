@@ -1,0 +1,32 @@
+<%= render 'public/nav' %>
+
+
+  <div>
+    <h2><%= @genre.name %>一覧(全<%= @items.count %>件)</h2>
+      <div>
+        <div>
+          <% @items.each do |item| %>
+          <div>
+            <%= link_to item_path(item.id), data: {"turbolinks" => false} do %>
+            					
+              <% if item.image.attached? %>
+                
+              <p><%= link_to (image_tag item.image, size: '230x150'), item_path(item.id) %></p>
+                 
+              <% else %>
+                
+              <p><%= image_tag "no_image.jpeg" %></p>
+                 
+              <% end %>
+                        
+              <%= item.name %>
+              						
+              ¥<%= item.with_tax_price.to_s(:delimited, delimiter: ',') %>
+            						
+            <% end %>
+          </div>
+          <% end %>
+        </div>
+      </div>
+    <div style="text-align: center;"><%= paginate @items %></div>
+  </div>

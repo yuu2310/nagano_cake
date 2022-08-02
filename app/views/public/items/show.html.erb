@@ -5,7 +5,7 @@
 
 <p><%= @item.introduction %></p>
 
-<%= number_to_currency(@item.price, unit: "¥", format: "%u %n" ) %>
+<%= number_to_currency(@item.with_tax_price, unit: "¥", format: "%u %n" ) %>
 <font size="2">(税込)</font>
 
 <%= form_with model: @cart_item do |item| %>
