@@ -1,10 +1,13 @@
 class Admin::GenresController < ApplicationController
   
+  before_action :authenticate_admin!
+  
   def create
-    genre = Genre.new(genre_params)
-    if genre.save
-      redirect_to admin_genres_path, notice: "登録しました"
+    @genre = Genre.new(genre_params)
+    if @genre.save
+      redirect_to admin_genres_path, notice: "新しくジャンルを登録しました"
     else
+      @genres = Genre.all
       render :index
     end
   end
@@ -19,16 +22,19 @@ class Admin::GenresController < ApplicationController
   end
   
   def update
-    genre = Genre.find(params[:id])
-    genre.update(genre_params)
-    redirect_to admin_genres_path
+    @genre = Genre.find(params[:id])
+    if @genre.update(genre_params)
+      redirect_to admin_genres_path, notice: "ジャンル名を更新しました"
+    else
+      render :edit
+    end
   end
   
-  # def destroy
-  #   genre = Genre.find(params[:id])  
-  #   genre.destroy  
-  #   redirect_to   admin_genres_path
-  # end
+  def destroy
+    genre = Genre.find(params[:id])  
+    genre.destroy  
+    redirect_to   admin_genres_path
+  end
   
   private
   

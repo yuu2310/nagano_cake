@@ -1,5 +1,9 @@
 class Public::OrdersController < ApplicationController
   
+  before_action :authenticate_customer!
+  before_action :ensure_cart_items, only: [:new, :confirm, :create]
+  #起こさせたくないアクションにonlyオプションを指定
+  
   def new
     @order = Order.new
     @addresses = current_customer.addresses
@@ -60,16 +64,30 @@ class Public::OrdersController < ApplicationController
   
   def index
     @orders = current_customer.orders
+    @item = current_customer
   end
   
   def show
-  #   @order = Order.find(params[:id])
-		# @order_details = @order.order_details
+    @order = Order.find(params[:id])
+		@order_details = @order.order_details
   end
   
   private
   
   def order_params
     params.require(:order).permit(:customer_id, :postal_code, :address, :name, :shipping_cost, :total_payment, :payment_method, :status)
+  end
+  
+  def ensure_cart_items
+    my_cart = current_customer.cart_items
+    #自分のカートに商品があるか確認する
+    unless my_cart.exists?
+      @cart_errors = 16
+      @cart_items = current_customer.cart_items.all
+      @total = 0
+      render "public/cart_items/index"
+    end
+    #カートに商品がない場合confiemとnewとcreateに移動させたくない
+    
   end
 end

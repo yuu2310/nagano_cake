@@ -1,16 +1,57 @@
-<h2>配送先編集</h2>
-
-<%= form_with model: @address, url: address_path(@address.id), method: :patch do |address| %>
-
-<h5>郵便番号(ハイフンなし)</h5>
-<%= address.text_field :postal_code %>
-
-<h5>住所</h5>
-<%= address.text_field :address %>
-
-<h5>宛名</h5>
-<%= address.text_field :name %>
-
-<%= address.submit '変更内容を保存' %>
-
-<% end %>
+<%= render 'public/nav' %>
+<main>
+  <div class="container">
+    <div class="row">
+      <div class="col-2 mt-5 bg-light text-center">
+        <h2>配送先編集</h2>
+      </div>
+    </div>  
+    
+    <% if @address.errors.any? %>
+      <h5 class="text-danger">
+        ※<%= @address.errors.count %>件のエラーが発生しました
+      </h5>
+      <ul class="text-danger list-unstyled">
+        <% @address.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    <% end %>
+                          
+    <%= form_with model: @address, url: address_path(@address.id), method: :patch do |address| %>
+    
+    <div class="row mt-5">   
+      <div class="col-3">
+        <h5>郵便番号(ハイフンなし)</h5>
+      </div>
+      <div class="col-9">
+        <%= address.text_field :postal_code %>
+      </div>
+    </div>
+      
+    <div class="row mt-5">   
+      <div class="col-3">
+        <h5>住所</h5>
+      </div>
+      <div class="col-9">
+        <%= address.text_field :address %>
+      </div>
+    </div>
+    
+    <div class="row mt-5">   
+      <div class="col-3">
+        <h5>宛名</h5>
+      </div>
+      <div class="col-9">
+        <%= address.text_field :name %>
+         <%= address.submit '変更内容を保存', class: "btn btn-success ml-3" %>
+      </div>
+    </div>
+    
+    <% end %>
+    
+    <%= link_to '戻る', addresses_path, class: "btn btn-secondary mt-4" %>
+    
+    
+  </div>                        
+</main>

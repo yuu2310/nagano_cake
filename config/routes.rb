@@ -36,7 +36,8 @@ end
 
  namespace :admin do
   root to: 'homes#top'
-  resources :genres, only:[:index, :create, :edit, :update] 
+  get '/about' => 'homes#about'
+  resources :genres, only:[:index, :create, :edit, :update, :destroy] 
   resources :items, only:[:new, :create, :index, :show, :edit, :update, :destroy]
   resources :customers, only:[:index, :edit, :update, :show]
   resources :orders, only:[:index, :show, :update]

@@ -1,4 +1,5 @@
 class Public::CustomersController < ApplicationController
+  before_action :authenticate_customer!
   
   def show
     @customer = current_customer
@@ -9,9 +10,12 @@ class Public::CustomersController < ApplicationController
   end
   
   def update
-    customer = Customer.find(params[:id])
-    customer.update(customer_params)
-    redirect_to customers_my_page_path(customer.id)  
+    @customer = Customer.find(params[:id])
+    if @customer.update(customer_params)
+      redirect_to customers_my_page_path(@customer.id), notice: "プロフィールを更新しました"
+    else
+      render :edit
+    end
   end
   
   def unsubscribe
@@ -21,8 +25,7 @@ class Public::CustomersController < ApplicationController
     @customer = current_customer
     if @customer.update(is_deleted: true)
       reset_session
-      flash[:notice] = "退会処理を実行しました"
-      redirect_to root_path
+      redirect_to root_path, notice: "退会しました。またのご利用心よりお待ちしております。"
     end
   end
 

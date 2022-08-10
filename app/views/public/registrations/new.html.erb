@@ -1,45 +1,132 @@
 <%= render 'public/nav' %>
-<h2>新規会員登録</h2>
-
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-  <%= render "public/shared/error_messages", resource: resource %>
-   
-  <h5>名前</h5>
-    (姓)<%= f.text_field :first_name, autofocus: true, placeholder: "令和" %>
-    (名)<%= f.text_field :last_name, placeholder: "道子" %>
-
-  <h5>フリガナ</h5>
-    (セイ)<%= f.text_field :first_name_kana, placeholder: "レイワ" %>
-    (メイ)<%= f.text_field :last_name_kana, placeholder: "ミチコ" %>
-  
-  <h5>メールアドレス</h5>
-    <%= f.email_field :email, placeholder: "sample@example.com" %>
+<div class="container">
+      <div class="row">
+        <div class="col-md-3 mt-5 bg-light text-center">
+          <h2>新規会員登録</h2>
+        </div>
+      </div>
+      
+      
+      <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+          <%= render "public/shared/error_messages", resource: resource %>
+      
+      <div class="row">
+        <div class="col-md-10 offset-1 mt-5">
+          <div class="form-group">
+            <h5>名前</h5>
+            <div class="mt-3">
+              (姓)<%= f.text_field :first_name, autofocus: true, placeholder: "令和", class: "form-control" %>
+            </div>
+           
+            <div class="mt-3">
+              (名)<%= f.text_field :last_name, placeholder: "道子", class: "form-control" %>
+            </div>
+            
+          </div>
+        </div>
+      </div>
+      
+      
+      
+      <div class="row">
+        <div class="col-md-10 offset-1 mt-3">
+          <div class="form-group">
+            <h5>フリガナ</h5>
+            <div class="mt-3">
+              (セイ)<%= f.text_field :first_name_kana, placeholder: "レイワ", class: "form-control" %>
+            </div>
+           
+            <div class="mt-3">
+             (メイ)<%= f.text_field :last_name_kana, placeholder: "ミチコ", class: "form-control" %>
+            </div>
+            
+          </div>
+        </div>
+      </div>     
+      
+      <div class="row">
+        <div class="col-md-10 offset-1 mt-3">
+          <div class="form-group">
+            <h5>メールアドレス</h5>
+            <div class="mt-3">
+              <%= f.email_field :email, placeholder: "sample@example.com", class: "form-control" %>
+            </div>
+          </div>
+        </div>
+      </div>     
+      
+      <div class="row">
+        <div class="col-md-10 offset-1 mt-3">
+          <div class="form-group">
+            <h5>郵便番号(ハイフンなし)</h5>
+            <div class="mt-3">
+              <%= f.text_field :postal_code, placeholder: "0000000" %>
+            </div>
+          </div>
+        </div>
+      </div>     
+      
+      <div class="row">
+        <div class="col-md-10 offset-1 mt-3">
+          <div class="form-group">
+            <h5>住所</h5>
+            <div class="mt-3">
+                <%= f.text_field :address, placeholder: "東京都渋谷区代々木神薗町0-0", size: '50', class: "form-control" %>
+            </div>
+          </div>
+        </div>
+      </div>     
+      
+      <div class="row">
+        <div class="col-md-10 offset-1 mt-3">
+          <div class="form-group">
+            <h5>電話番号(ハイフンなし)</h5>
+            <div class="mt-3">
+               <%= f.text_field :telephone_number, placeholder: "00000000000", class: "form-control" %>
+            </div>
+          </div>
+        </div>
+      </div>     
+      
+      
+      <div class="row">
+        <div class="col-md-10 offset-1 mt-3">
+          <div class="form-group">
+            <h5>パスワード(6文字以上)</h5>
+            <div class="mt-3">
+          <!--<%# if @minimum_password_length %>-->
+          <!--<em>(<%#= @minimum_password_length %> characters minimum)</em>-->
+          <!--<%# end %><br />-->
+              <%= f.password_field :password %>
+            </div>
+          </div>
+        </div>
+      </div>     
+      
+      
+      <div class="row">
+        <div class="col-md-10 offset-1 mt-3">
+          <div class="form-group">
+            <h5>パスワード(確認用)</h5>
+            <div class="mt-3">
+              <%= f.password_field :password_confirmation %>
+            </div>
+          </div>
+        </div>
+      </div>     
+      
+      <div class="text-center">
+        <%= f.submit "新規登録", class:"btn btn-success" %>
+      </div>
+                    
+      <% end %>
+      
+      <div class="col-4 text-center bg-light mt-5 ml-5">
+        <h5>既に登録済みの方</h5>
+      </div>
+      <div class="text-center">
+        <p><%= link_to 'こちら', new_customer_session_path %>からログインしてください</p>
+      </div>
+      
     
-  <h5>郵便番号(ハイフンなし)</h5>
-    <%= f.text_field :postal_code, placeholder: "0000000", maxlength: "7" %>
-    
-  <h5>住所</h5>
-    <%= f.text_field :address, placeholder: "東京都渋谷区代々木神薗町0-0", size: '50' %>
-    
-  <h5>電話番号(ハイフンなし)</h5>
-    <%= f.text_field :telephone_number, placeholder: "00000000000" %>
-
-  <h5>パスワード(6文字以上)</h5>
-    <!--<%# if @minimum_password_length %>-->
-    <!--<em>(<%#= @minimum_password_length %> characters minimum)</em>-->
-    <!--<%# end %><br />-->
-    <%= f.password_field :password %>
-
-  <h5>パスワード(確認用)</h5>
-    <%= f.password_field :password_confirmation %>
-
-  <div class="actions">
-    <%= f.submit "新規登録" %>
-  </div>
-
-<% end %>
-
-<p>既に登録済みの方</p>
-<p><%= link_to 'こちら', new_customer_session_path %>からログインしてください</p>
-
-<%#= render "public/shared/links" %>
+</div>

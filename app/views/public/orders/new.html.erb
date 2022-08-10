@@ -1,44 +1,97 @@
 <%= render 'public/nav' %>
 
-  <h2>注文情報入力</h2>
-  
+<div class="container">
+  <div class="row">
+    <div class="col-md-3 text-center mt-5 bg-light">
+      <h2>注文情報入力</h2>
+    </div>
+  </div>
+
+
+
   <%= form_with model: @order, url: orders_confirm_path, method: :post, local: true do |order| %>
   
-    <h5 class="font-weight-bold">支払方法</h5>
+    <strong>支払方法</strong>
     
-    <%= order.radio_button :payment_method, Order.payment_methods.key(0) %>
-    <%= order.label :payment_method, Order.payment_methods_i18n[:credit_card] %></br>
+    <div class="row">
+      <div class="col-md-3 ml-4 my-3">
+        <%= order.radio_button :payment_method, Order.payment_methods.key(0) %>
+        <%= order.label :payment_method, Order.payment_methods_i18n[:credit_card] %></br>
 
-    <%= order.radio_button :payment_method, Order.payment_methods.key(1) %>
-    <%= order.label :payment_method, Order.payment_methods_i18n[:transfer]%>
+        <%= order.radio_button :payment_method, Order.payment_methods.key(1) %>
+        <%= order.label :payment_method, Order.payment_methods_i18n[:transfer]%>
+      </div>
+    </div>
+    
+    
 
-     <h5 class="font-weight-bold">お届け先</h5>
+     <strong>お届け先</strong>
+     <div class="row">
+        <div class="col-md-3 my-3 ml-4">
+          <%= order.radio_button :address_option, 0 %>
+          <%= order.label :address_option, 'ご自身の住所' %>
+        </div>
+      </div>
+      
+      <div class="row">
+        <div class="col-md-3 ml-5">
+          〒<%= current_customer.postal_code %>
+            <%= current_customer.address%>
+            <%= current_customer.full_name %>
+        </div>
+      </div>
+      
+      <div class="row">
+        <div class="col-md-3 my-3 ml-4">
+          <%= order.radio_button :address_option, 1%>
+          <%= order.label :address_option, '登録済み住所から選択' %>
+        </div>
+      </div>
+      
+      <div class="row">
+        <div class="col-md-3 ml-5">
+          <%= order.collection_select :address_id, @addresses, :id, :view_address %>
+        </div>
+      </div>
+      
+      <div class="row">
+        <div class="col-md-3 my-3 ml-4">
+          <%= order.radio_button :address_option, 2 %>
+          <%= order.label :address_option, '新しいお届け先' %>
+        </div>
+      </div>
+      
+      <div class="row">
+        <div class="col-md-3 ml-5 mb-3">
+          <%= order.label :postal_code, '郵便番号(ハイフン無し)' %>
+        </div>
+        <div>
+          <%= order.text_field :postal_code, placeholder: "0000000", maxlength: "7", size: '15' %>
+        </div>
+      </div>
+      
+      <div class="row">
+        <div class="col-md-3 ml-5 mb-3">
+          <%= order.label :address, '住所' %>
+        </div>
+        <div>
+          <%= order.text_field :address, placeholder: "東京都渋谷区代々木神薗町0-0", size: '50' %>
+        </div>
+      </div>
+      
+      <div class="row">
+        <div class="col-md-3 ml-5 mb-3">
+          <%= order.label :name, '宛名' %>
+        </div>
+        <div>
+          <%= order.text_field :name, autofocus: true, placeholder: "令和道子", size: '15' %>
+        </div>
+      </div>
+      
+      <div class="text-center">
+        <%=  order.submit '確認画面へ進む', class: "btn btn-success" %>
+      </div>
+          
     
-    <%= order.radio_button :address_option, 0 %>
-    <%= order.label :address_option, 'ご自身の住所' %></br>
-    〒<%= current_customer.postal_code %>
-    <%= current_customer.address%>
-    <%= current_customer.full_name %></br>
-    
-    <%= order.radio_button :address_option, 1%>
-    <%= order.label :address_option, '登録済み住所から選択' %></br>
-    
-    <%= order.collection_select :address_id, @addresses, :id, :view_address %></br>
-    
-    
-    <%= order.radio_button :address_option, 2 %>
-    <%= order.label :address_option, '新しいお届け先' %></br>
-    
-    <%= order.label :postal_code, '郵便番号(ハイフン無し)' %>
-    <%= order.text_field :postal_code, placeholder: "0000000", maxlength: "7", size: '15' %></br>
-    
-    <%= order.label :address, '住所' %>
-    <%= order.text_field :address, placeholder: "東京都渋谷区代々木神薗町0-0", size: '50' %></br>
-    
-    <%= order.label :name, '宛名' %>
-    <%= order.text_field :name, autofocus: true, placeholder: "令和道子", size: '15' %>
-    
-    <%=  order.submit '確認画面へ進む' %>
-
-<% end %>
-
+  <% end %>
+</div>

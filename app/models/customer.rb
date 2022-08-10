@@ -13,10 +13,10 @@ class Customer < ApplicationRecord
   validates :last_name_kana, presence: true
   validates :first_name_kana, presence: true
   validates :email, presence: true
-  validates :encrypted_password, presence: true
-  validates :postal_code, presence: true
+  validates :encrypted_password, presence: true, length: { minimum: 6 }
+  validates :postal_code, presence: true, numericality: { only_integer: true }
   validates :address, presence: true
-  validates :telephone_number, presence: true
+  validates :telephone_number, presence: true, numericality: { only_integer: true }
   
   def full_name
     first_name + " " + last_name

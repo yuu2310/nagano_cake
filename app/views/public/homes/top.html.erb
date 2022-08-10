@@ -1,31 +1,53 @@
 <%= render 'public/nav' %>
 
-<p class="font-text">
-	ようこそ、NaganoCakeへ！<br>
-  このサイトは、ケーキ販売のECサイトになります。<br>
-  会員でない方も商品の閲覧はできますが、<br>
-  購入には会員登録が必要になります。
-</p>
-
-<h5>新着商品</h5>
-
-<% @items.each do |item| %>
-
-<% if item.image.attached? %>
-
-  <%= link_to (image_tag item.image, size: '230x150'), item_path(item.id) %></br>
-
-<% else %>
+<div class="container">
+  <div class="row">
+    <div class="col-12 text-center  mt-5">
+          	ようこそ、NaganoCakeへ！<br><br>
+            このサイトは、ケーキ販売のECサイトになります。<br><br>
+            会員でない方も商品の閲覧はできますが、<br><br>
+            購入には会員登録が必要になります。<br><br>
+    </div>
+  </div>        
+        
+  <div class="col-2 text-center mt-5 bg-light">
+    <h5>新着商品</h5>
+  </div>
+                
   
-  <%= image_tag "no_image.jpeg" %>
+  <div class="container">
+    <div class="row mt-5">
+      
+      <% @items.each do |item| %>
+          
+            <div class="col-md-3 mb-4">
+                  
+                <% if item.image.attached? %>
+                
+                  <%= link_to (image_tag item.image, size: '230x150'), item_path(item.id) %></br>
+    
+              <% else %>
+                
+                <%= image_tag "no_image.jpeg" %>
+                 
+              <% end %>
+              
+              <%= item.name %></br>
+                
+              ¥ <%= item.with_tax_price.to_s(:delimited) %></br>
+            </div> 
+               <% end %>
+    </div>          
+    <div class="row">
+      <div class="col-md-12 text-right">
+                 <%= link_to "すべての商品を見る>>", items_path %>
+      </div>
+    </div>
+  </div>
+  
+</div>
+
+
+    
    
-<% end %>
-
-<%= item.name %></br>
-  
-¥ <%= item.with_tax_price.to_s(:delimited) %></br>
-  
- <% end %>
  
- <%= link_to "すべての商品を見る>", items_path %>
-

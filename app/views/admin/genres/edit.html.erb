@@ -1,17 +1,41 @@
 <%= render 'admin/nav' %>
-<h1>ジャンル編集</h1>
-
- <%= form_with model: @genre, url: admin_genre_path(@genre.id), method: :patch do |genre| %>
-    <div class="form-group">
-      <%= genre.label :name %>
-      <%= genre.text_field :name, class: "form-control name" %>
+<main>
+  <div class="container">
+    <div class="col-3 bg-light mt-5">
+        <h1>ジャンル編集</h1>
     </div>
+                  
+    <% if @genre.errors.any? %>
+      <h5 class="text-danger">
+        ※<%= @genre.errors.count %>件のエラーが発生しました
+      </h5>
+      <ul class="text-danger list-unstyled">
+        <% @genre.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    <% end %>
     
-    <div class="form-group">
-      <%= genre.submit '変更を保存', class: "btn btn-primary" %>
+    <div class="row text-center">
+      <div class="col-12 mt-4"></div>
+       <%= form_with model: @genre, url: admin_genre_path(@genre.id), method: :patch do |genre| %>
+          <div class="form-group">
+            <%= genre.label :name %>
+            <%= genre.text_field :name %>
+          </div>
+          
+          <div class="form-group mt-3">
+            <%= genre.submit '変更を保存', class: "btn btn-success" %>
+          </div>
+       
+       <% end %>
+      </div>
+          
+        <%= link_to "戻る", admin_genres_path(@genre.id), class: "btn btn-primary" %>
+            
+        <%= link_to '削除', admin_genre_path(@genre.id), method: :delete, "data-confirm" => "本当に削除しますか？", class: "btn btn-danger"  %>
+           
     </div>
- 
- <% end %>
- 
- <%= link_to "戻る", admin_genres_path(@genre.id) %>
- <!--<%#= link_to '削除', admin_genre_path(@genre.id), method: :delete %>-->
+   
+  </div>     
+ </main>

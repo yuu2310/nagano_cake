@@ -60,6 +60,11 @@ class Public::RegistrationsController < Devise::RegistrationsController
   #   super(resource)
   # end
   
+  def after_sign_in_path_for(resource)
+    flash[:notice] = "ログインしました"
+    customers_my_page_path
+  end
+  
   
   def configure_sign_up_params
     devise_parameter_sanitizer.permit(:sign_up, keys: [:first_name, :last_name, :first_name_kana, :last_name_kana, :postal_code, :address, :telephone_number])

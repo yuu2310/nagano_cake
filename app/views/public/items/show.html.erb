@@ -1,22 +1,48 @@
 <%= render 'public/nav' %>
-<p><%= image_tag @item.image, size: "250x150" %></p>
 
-<p><%= @item.name %></p>
-
-<p><%= @item.introduction %></p>
-
-<%= number_to_currency(@item.with_tax_price, unit: "¥", format: "%u %n" ) %>
-<font size="2">(税込)</font>
-
-<%= form_with model: @cart_item do |item| %>
-
-<%= item.select :amount, *[1..10], { include_blank: '個数選択' } %>
-
-<%= item.hidden_field :item_id, :value => @item.id %>
-
-<%= item.hidden_field :customer_id, :value => current_customer.id %>
-
-<%= item.submit 'カートに入れる' %>
-
+<% if @cart_item.errors.any? %>
+  <h5 class="text-danger">
+    ※<%= @cart_item.errors.count %>件のエラーが発生しました
+  </h5>
+  <ul class="text-danger list-unstyled">
+    <% @cart_item.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+    <% end %>
+  </ul>
 <% end %>
+
+<div class="container">
+  <div class="row mt-5">
+    <!--<div class="col-md-4"></div>-->
+    <div class="col-md-8">
+      <p><%= image_tag @item.image, size: "450x350" %></p>
+    </div>
+    
+    <div class="col-md-4">
+      
+      <strong><h2><%= @item.name %></h2></strong>
+      
+      <strong><%= @item.introduction %></strong><br>
+      
+      <div class="mt-3">
+        <%= number_to_currency(@item.with_tax_price, unit: "¥", format: "%u %n" ) %>
+        <font size="2">(税込)</font>
+      </div>
+      
+        <%= form_with model: @cart_item do |item| %>
+        
+        <%= item.select :amount, *[1..10], { include_blank: '個数選択' }, class:"mt-3" %>
+        
+        <%= item.hidden_field :item_id, :value => @item.id %>
+        
+        <%= item.hidden_field :customer_id, :value => current_customer.id %>
+        
+        <%= item.submit 'カートに入れる', class: "ml-3 btn btn-success" %>
+    </div>
+        <% end %>
+  </div>
+</div>
+
+
+
 

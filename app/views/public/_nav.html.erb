@@ -1,12 +1,15 @@
 <header>
   
-  <% if flash[:notice] %>
-    <div class="flash">
-      <%= flash[:notice] %>
-    </div>
+   <% if flash[:notice] %>
+  
+   <div class="alert alert-success" role="alert">
+     <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">x</span></button>
+     <p class="notice text-center alert-dismissible" style="color:green;"><%= flash[:notice] %></p>
+   </div>
+   
   <% end %>
   
-  <nav class="navbar navbar-expand-md navbar-light">
+  <nav class="navbar navbar-expand-md navbar-light border-bottom">
     <div class="container">
       
         
@@ -15,19 +18,19 @@
          <ul class="navbar-nav ml-auto">
            
            
-             <li>
+             <li class="mr-3">
               <button class="btn btn-outline-secondary" type="button"><%= link_to 'マイページ', customers_my_page_path, class: 'nav-link text-dark'  %></button>
             </li>
             
-            <li>
+            <li class="mr-3">
               <button class="btn btn-outline-secondary" type="button"><%= link_to  '商品一覧', items_path, class: 'nav-link text-dark'   %></button>
             </li>
             
-            <li>
+            <li class="mr-3">
               <button class="btn btn-outline-secondary" type="button"><%= link_to 'カート', cart_items_path, class: 'nav-link text-dark'  %></button>
             </li>
             
-            <li>
+            <li class="mr-3">
               <button class="btn btn-outline-secondary" type="button"><%= link_to 'ログアウト', destroy_customer_session_path, method: :delete, class: 'nav-link text-dark'  %></button>
             </li>
             
@@ -36,23 +39,23 @@
            <% else %>
           <ul class="navbar-nav ml-auto">
              
-              <li>
+              <li class="mr-3">
                 <button class="btn btn-outline-secondary" type="button"><%= link_to 'About', about_path, class: 'nav-link text-dark'  %></button>
               </li>
               
-              <li>
+              <li class="mr-3">
                 <button class="btn btn-outline-secondary" type="button"><%= link_to  '商品一覧', items_path, class: 'nav-link text-dark'  %></button>
               </li>
               
-              <li>
+              <li class="mr-3">
                 <button class="btn btn-outline-secondary" type="button"><%= link_to  '新規登録', new_customer_registration_path, class: 'nav-link text-dark'  %></button>
               </li>
               
-              <li>
+              <li class="mr-3">
                 <button class="btn btn-outline-secondary" type="button"><%= link_to 'ログイン', new_customer_session_path, class: 'nav-link text-dark'  %></button>
               </li>
               
-              <li>
+              <li class="mr-3">
                 <button class="btn btn-outline-secondary" type="button"><%= link_to  '管理者側ログインへ', new_admin_session_path, class: 'nav-link text-dark'  %></button>
               </li>
               

@@ -1,53 +1,66 @@
 <%= render 'admin/nav' %>
-<h1>商品新規登録</h1>
-
-<% if @item.errors.any? %>
-  <%= @item.errors.count %>件のエラーが発生しました
-  <ul>
-    <% @item.errors.full_messages.each do |message| %>
-      <li><%= message %></li>
-    <% end %>
-  </ul>
-<% end %>
-
-
-  <%= form_with model: @item, url: admin_items_path, method: :post do |item| %>
-  
-  <div class="from-group">
-   <h5>商品画像</h5>
-      <%= item.file_field :image, accept: "image/*" %>
-  </div>
-  
-  <div class="from-group">
-    <h5>商品名</h5>
-      <%= item.text_field :name, placeholder: "商品名" %>
-  </div>
-  
-  <div class="from-group">
-    <h5>商品説明</h5>
-      <%= item.text_area :introduction, placeholder: "ここに説明文を記述します" %>
-  </div>
-  
-  <div class="from-group">
-   <h5>ジャンル</h5>
-     <%= item.collection_select :genre_id, @genres, :id, :name, { prompt: "--選択してください--" }  %>
-  </div>
-  
-  <div class="from-group">
-    <h5>税抜価格</h5>
-      <%= item.text_field :price, placeholder: "1000" %>円
-  </div>
-  
-  <div class="from-group">
-    <h5>販売ステータス</h5>
-      <%= item.label :is_active_sale, '販売中' %>
-      <%= item.radio_button :is_active, :true, checked: true %>
-      <%= item.label :is_active_suspended_sales, '販売停止中' %>
-      <%= item.radio_button :is_active, :false %>
-  </div>
-  
-	<div class="from-group">
-    <%= item.submit '新規登録', class: "btn btn-success" %>
-  </div>
-  
-<% end %>
+<main>
+  <div class="text-center">
+        <div class='row mt-5'>
+          <div class="col-3 bg-light">
+                    <h1>商品新規登録</h1>
+          </div>
+        </div>
+          <% if @item.errors.any? %>
+            <h5 class="text-danger">
+              ※<%= @item.errors.count %>件のエラーが発生しました
+            </h5>
+            <ul class="text-danger list-unstyled">
+              <% @item.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+              <% end %>
+            </ul>
+          <% end %>
+                  
+      <%= form_with model: @item, url: admin_items_path, method: :post do |item| %>
+      <table class="table table-borderless ">
+        <tbody>
+          <tr>
+            <th scope="row">商品画像</th>
+            <td> <%= item.file_field :image, accept: "image/*" %></td>
+          </tr>
+          
+          <tr>
+            <th scope="row">商品名</th>
+            <td><%= item.text_field :name, placeholder: "商品名" %></td>
+          </tr>
+          
+          <tr>
+            <th scope="row">商品説明</th>
+            <td><%= item.text_area :introduction, placeholder: "ここに説明文を記述します" %></td>
+          </tr>
+          
+          <tr>
+            <th scope="row">ジャンル</th>
+            <td><%= item.collection_select :genre_id, @genres, :id, :name, { prompt: "--選択してください--" }  %></td>
+          </tr>
+          
+          <tr>
+            <th scope="row">税抜価格</th>
+            <td> <%= item.text_field :price, placeholder: "1000" %>円</td>
+          </tr>
+          
+          <tr>
+            <th scope="row">販売ステータス</th>
+            <td> 
+              <%= item.label :is_active_sale, '販売中' %>
+              <%= item.radio_button :is_active, :true, checked: true %>
+              <%= item.label :is_active_suspended_sales, '販売停止中' %>
+              <%= item.radio_button :is_active, :false %>
+            </td>
+          </tr>
+          
+          
+        </tbody>
+      </table>
+        <div>
+          <%= item.submit '新規登録', class: "btn btn-success" %>
+        </div>
+      <% end %>
+    </div>
+  </main>

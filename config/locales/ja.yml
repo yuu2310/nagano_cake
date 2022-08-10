@@ -1,4 +1,44 @@
 ja:
+
+ activerecord:
+  attributes:
+   customer:
+    last_name: "名前（名）"
+    first_name: "名前（姓）"
+    last_name_kana: "ナマエ（姓）"
+    first_name_kana: "ナマエ（名）"
+    email: "メールアドレス"
+    encrypted_password: "パスワード"
+    postal_code: "郵便番号"
+    address: "住所"
+    telephone_number: "電話番号"
+    
+   genre: 
+    name: "ジャンル名"
+    
+   item:
+    image: "画像"
+    name: "商品名"
+    introduction: "商品説明"
+    genre: "ジャンル"
+    price: "価格"
+  
+   cart_item:
+    amount: "個数"
+   
+    
+   address:
+    postal_code: "郵便番号"
+    address: "住所"
+    name: "名前"
+    
+  errors:
+   models:
+    item:
+     attributes:
+      image: 
+       blank: "を選択してください"
+      
  enums:
   order:
    payment_method:
@@ -18,3 +58,6 @@ ja:
     production_pending: "制作待ち"
     in_production: "製作中"
     production_complete: "制作完了"
+    
+    
+  

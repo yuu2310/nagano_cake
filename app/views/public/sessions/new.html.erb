@@ -1,31 +1,37 @@
 <%= render 'public/nav' %>
-<h2>ログイン</h2>
-
-  <p>会員の方はこちらからログイン</p>  
-    
-    <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-      <div class="field">
-        <%= f.label 'メールアドレス' %><br />
-        <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "sample@example.com" %>
+<div class="container">
+      <div class="row">
+        <div class="col-md-2 mt-5 bg-light text-center">
+         <h2>ログイン</h2>
+        </div>
       </div>
-    
-      <div class="field">
-        <%= f.label 'パスワード' %><br />
-        <%= f.password_field :password, autocomplete: "current-password" %>
+      
+      <div class="col-8 offset-2">
+        <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+          <div class="form-group mt-5">
+            <%= f.label 'メールアドレス' %>
+            <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "sample@example.com", class: "form-control" %>
+          </div>
+        
+          <div class="form-group mt-5">
+            <%= f.label :password, 'パスワード' %>
+            <%= f.password_field :password, autocomplete: "current-password", size: '50', class: "form-control password" %>
+          </div>
+      </div>      
+      
+      <div class="text-center">
+        <%= f.submit "ログイン", class:"btn btn-primary" %>
       </div>
-    
-      <!--<%# if devise_mapping.rememberable? %>-->
-      <!--  <div class="field">-->
-      <!--    <%#= f.check_box :remember_me %>-->
-      <!--    <%#= f.label :remember_me %>-->
-      <!--  </div>-->
-      <!--<%# end %>-->
-    
-      <div class="actions">
-        <%= f.submit "ログイン" %>
+      <% end %>
+                
+      <div class="row">
+        <div class="col-md-4 mt-5 bg-light text-center">
+         <h5>会員登録がお済みでない方</h5>
+        </div>
       </div>
-    <% end %>
-    
-    <p>会員登録がお済みでない方</p>
-    <%= link_to 'こちら', new_customer_registration_path %>から新規登録を行ってください。
-    <!--<%#= render "public/shared/links" %>-->
+      
+      <div class="text-center mt-5">
+         <%= link_to 'こちら', new_customer_registration_path %>から新規登録を行ってください。
+      </div>
+      <!--<%#= render "public/shared/links" %>-->
+</div>

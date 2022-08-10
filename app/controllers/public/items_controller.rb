@@ -1,7 +1,12 @@
 class Public::ItemsController < ApplicationController
   
+  before_action :authenticate_customer!, except:[:index]
+  
+  
+  
   def index
-    @items = Item.all.page(params[:page]).per(8)
+    @items = Item.where(is_active: "販売中").page(params[:page]).per(8)
+    #販売ステータスが販売中の商品のみ表示
   end
   
   def show
@@ -17,4 +22,5 @@ class Public::ItemsController < ApplicationController
   def item_params
     params.require(:item).permit(:genre_id, :name, :introduction, :price, :is_active, :image)
   end
+ 
 end

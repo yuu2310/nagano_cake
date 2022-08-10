@@ -1,11 +1,15 @@
 <%= render 'admin/nav'%>
 <main>
-  <p id="notice"></p>
-  <div class="container px-5 px-sm-0 offset-md-1">
+  <div class="container mt-5">
     <div class="row">
-      <div class="col-md-12">
-        <p><span class="p-3 mb-2 bg-light text-dark font-weight-bold">商品一覧</span></p>
-        <p><%= link_to '商品新規登録画面へ', new_admin_item_path, class: "text-end" %></p>
+      <div class="col-12">
+        <h2>
+          <span class="p-3 mb-2 bg-light">
+            商品一覧
+          </span>
+        </h2>
+        <%= link_to '商品新規登録画面へ', new_admin_item_path, class: " btn btn-primary my-4" %>
+        
           <table class="table">
              <thead>
                 <tr class="p-3 mb-2 bg-light text-dark">

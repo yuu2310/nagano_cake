@@ -1,11 +1,16 @@
 <header>
+  
   <% if flash[:notice] %>
-    <div class="flash">
-      <%= flash[:notice] %>
-    </div>
+  
+   <div class="alert alert-success" role="alert">
+     <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">x</span></button>
+     <p class="notice text-center alert-dismissible" style="color:green;"><%= flash[:notice] %></p>
+   </div>
+   
   <% end %>
+  
     
-     <nav class="navbar navbar-expand-md navbar-light">
+     <nav class="navbar navbar-expand-md navbar-light border-bottom">
         <div class="container">
           <button class="btn btn-outline-secondary" type="button"><%= link_to "Logo", admin_root_path, class: 'nav-link text-dark'  %></button>
           
@@ -14,25 +19,25 @@
             <div class="navbar-collapse collapse" id="navbarNavDropdown" style>
               <ul class="navbar-nav ml-auto">
                 
-                <li>
+                <li class="mr-3">
                   <button class="btn btn-outline-secondary" type="button"><%= link_to '商品一覧', admin_items_path, class: 'nav-link text-dark' %></button>
                 </li>
                 
                 
-                <li>
+                <li class="mr-3">
                   <button class="btn btn-outline-secondary" type="button"><%= link_to '会員一覧', admin_customers_path, class: 'nav-link text-dark' %></button>
                 </li>
                 
-                <li>
+                <li class="mr-3">
                   <button class="btn btn-outline-secondary" type="button"><%= link_to '注文履歴一覧', admin_orders_path, class: 'nav-link text-dark' %></button>
                   
                 </li>
                 
-                <li>
+                <li class="mr-3">
                    <button class="btn btn-outline-secondary" type="button"><%= link_to 'ジャンル一覧', admin_genres_path, class: 'nav-link text-dark' %></button>
                 </li>
                 
-                <li>
+                <li class="mr-3">
                   <button class="btn btn-outline-secondary" type="button"><%= link_to 'ログアウト', destroy_admin_session_path, method: :delete, class: 'nav-link text-dark' %></button>
                 </li>
                 
@@ -45,23 +50,19 @@
                <div class="navbar-collapse collapse" id="navbarNavDropdown" style>
                  <ul class="navbar-nav ml-auto">
                    
-                    <li>
-                      <button class="btn btn-outline-secondary" type="button"><%= link_to 'About', about_path, class: 'nav-link text-dark'  %></button>
+                    <li class="mr-3">
+                      <button class="btn btn-outline-secondary" type="button"><%= link_to 'About', admin_about_path, class: 'nav-link text-dark'  %></button>
                     </li>
                     
-                    <li>
+                    <li class="mr-3">
                       <button class="btn btn-outline-secondary" type="button"><%= link_to '商品一覧', admin_items_path, class: 'nav-link text-dark'  %></button>
                     </li>
                     
-                    <li>
-                      <button class="btn btn-outline-secondary" type="button"><%= link_to '新規登録', new_admin_session_path, class: 'nav-link text-dark'  %></button>
-                    </li>
-                    
-                    <li>
+                    <li class="mr-3">
                       <button class="btn btn-outline-secondary" type="button"><%= link_to 'ログイン', admin_session_path, class: 'nav-link text-dark'  %></button>
                     </li>
                     
-                    <li>
+                    <li class="mr-3">
                       <button class="btn btn-outline-secondary" type="button"><%= link_to '顧客ログイン画面へ', new_customer_session_path, class: 'nav-link text-dark'  %></button>
                     </li>
                     

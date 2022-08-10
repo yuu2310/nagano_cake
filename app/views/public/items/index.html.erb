@@ -1,23 +1,37 @@
 <%= render 'public/nav' %>
 
-<h1>商品一覧</h1>
-
- <% @items.each do |item| %>
- 
-  <% if item.image.attached? %>
+<div class="container">
+ <div class="row">
+  <div class="col-md-3 text-center bg-light mt-5">
+   <h1>商品一覧</h1>
+  </div>
+ </div>
   
-   <p><%= link_to (image_tag item.image, size: '230x150'), item_path(item.id) %></p>
+  
+ <div class="container">
+  <div class="row mt-5">
+   <% @items.each do |item| %>
+   <div class="col-md-3">
+    
+    <% if item.image.attached? %>
    
-  <% else %>
-  
-   <p><%= image_tag "no_image.jpeg" %></p>
+     <p><%= link_to (image_tag item.image, size: '230x150'), item_path(item.id) %></p>
+     
+    <% else %>
+    
+     <p><%= image_tag "no_image.jpeg" %></p>
+     
+    <% end %>
+    
+    <p><%= item.name %></p>
+    
+    <p><%= number_to_currency(item.with_tax_price, unit: "¥", format: "%u %n" ) %></p>
+    
+   </div>
    
-  <% end %>
-  
-  <p><%= item.name %></p>
-  
-  <p><%= number_to_currency(item.with_tax_price, unit: "¥", format: "%u %n" ) %></p>
-  
- <% end %>
+   <% end %>
 
-<%= paginate @items %>
+  </div>
+ </div>
+ <%= paginate @items %>
+</div>

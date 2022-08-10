@@ -1,29 +1,42 @@
 <%= render 'admin/nav' %>
-<!--<form class="text-center">-->
-<h2>管理者ログイン</h2>
-
-<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-  <div class="field">
-    <%= f.label 'メールアドレス' %>
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+<div class="text-center">
+  <div class="container">
+    <div class="row mt-5">
+      <div class="col-3 bg-light">
+        <h2>管理者ログイン</h2>
+      </div>
+    </div>
+    
+    <div class="row mt-4 ">
+      <div class="col-8 offset-2">
+              <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+                <div class="form-group">
+                  <p>
+                  <%= f.label :email, 'メールアドレス' %>
+                  
+                  <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control email" %>
+                  </p>
+                </div>
+              
+                <div class="form-group">
+                  <%= f.label :password, 'パスワード' %>
+                  <%= f.password_field :password, autocomplete: "current-password", size: '50', class: "form-control password" %>
+                </div>
+              
+                <!--<%# if devise_mapping.rememberable? %>-->
+                <!--  <div class="field">-->
+                <!--    <%#= f.check_box :remember_me %>-->
+                <!--    <%#= f.label :remember_me %>-->
+                <!--  </div>-->
+                <!--<%# end %>-->
+      </div>        
+    </div> 
+      <div class="row mt-4">
+        <div class="col-12">
+          <%= f.submit "ログイン", class: "btn btn-primary" %>
+        </div>
+          <% end %>
+      </div>
+    <%= render "admin/shared/links" %>
   </div>
-
-  <div class="field">
-    <%= f.label 'パスワード' %>
-    <%= f.password_field :password, autocomplete: "current-password" %>
-  </div>
-
-  <!--<%# if devise_mapping.rememberable? %>-->
-  <!--  <div class="field">-->
-  <!--    <%#= f.check_box :remember_me %>-->
-  <!--    <%#= f.label :remember_me %>-->
-  <!--  </div>-->
-  <!--<%# end %>-->
-
-  <div class="actions">
-    <%= f.submit "ログイン" %>
-  </div>
-<% end %>
-
-<%= render "admin/shared/links" %>
-<!--</form>-->
+</div>

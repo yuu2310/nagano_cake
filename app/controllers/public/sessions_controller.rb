@@ -46,3 +46,13 @@ class Public::SessionsController < Devise::SessionsController
       end
   end
 end
+
+  # @customer = Customer.find_by(email: params[:customer][:email].downcase)
+  #     if @customer
+  #       if (@customer.valid_password?(params[:customer][:password]) && (@customer.is_deleted? == false))
+  #         flash[:error] = "退会済みです。"
+  #         redirect_to new_customer_registration_path
+  #       end
+  #     else
+  #       flash[:error] = "必須項目を入力してください。"
+  #     end
