@@ -45,6 +45,7 @@ ja:
     credit_card: "クレジットカード"
     transfer: "銀行振込"
     
+    #注文ステータス
    status:
     payment_waiting: "入金待ち"
     payment_confirmation: "入金確認"
@@ -52,12 +53,20 @@ ja:
     preparing_delivery: "発送準備中" 
     delivered: "発送済み"
     
+    
+    #製作ステータス
   order_detail:
    production_status:
-    production_not_possible: "制作不可"
-    production_pending: "制作待ち"
+    production_not_possible: "製作不可"
+    production_pending: "製作待ち"
     in_production: "製作中"
-    production_complete: "制作完了"
+    production_complete: "製作完了"
     
     
-  
+ devise:
+  failure:
+   customer:
+    invalid: "メールアドレスかパスワードが入力されていません"
+   admin:
+    invalid: "メールアドレスが入力されていません"
+    not_found_in_database: "パスワードが入力されていません"

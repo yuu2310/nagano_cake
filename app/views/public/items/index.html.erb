@@ -2,8 +2,8 @@
 
 <div class="container">
  <div class="row">
-  <div class="col-md-3 text-center bg-light mt-5">
-   <h1>商品一覧</h1>
+  <div class="col-md-4 text-center bg-light mt-5">
+   <h2>商品一覧(全<%= @items.count%>件)</h2>
   </div>
  </div>
   
@@ -33,5 +33,10 @@
 
   </div>
  </div>
- <%= paginate @items %>
+ <div class="row">
+  <div class="col-md-2 offset-5">
+   <%= paginate @items %>
+  </div>
+ </div>
+ 
 </div>
